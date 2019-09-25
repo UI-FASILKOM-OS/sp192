@@ -6,25 +6,26 @@
 
 CC=gcc
 
+P00=program0
 P01=program1
 P02=program2
-Pmain=main
+main=main
 
 EXECS= \
+   $(P00) \
    $(P01) \
    $(P02) \
-   $(Pmain) \
+   $(main) \
    
 
-all:	seealso $(EXECS) 
+all:    seealso $(EXECS) 
 
 .phony: clean all seealso
 
 clean: seealso
-	rm -f ${EXECS}
+    rm -f ${EXECS}
 
 seealso:
-	@echo "=============================="
-	@echo "See also file Checklist02a.pdf"
-	@echo "=============================="
-
+    @echo "=============================="
+    @echo "See also file Checklist02a.pdf"
+    @echo "=============================="
