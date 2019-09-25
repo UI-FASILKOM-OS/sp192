@@ -1,4 +1,4 @@
-#include <stdio.h>
+nclude <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -40,9 +40,3 @@ void main(int argc, char *argv[]) {
  * proses parent akan memasuki statement else
  * dan akan menunggu hingga proses child selesai menjalankan program
  */
-/*
- * TAKE NOTE(MA)
- * Pada program ini, print pada child akan dilakukan terlebih dahulu
- * karena setelah dilakukan fork, 
- * proses parent akan memasuki statement else
- * dan akan menunggu hingga proses child selesai men */
