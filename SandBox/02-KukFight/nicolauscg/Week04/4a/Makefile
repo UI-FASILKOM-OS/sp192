@@ -1,19 +1,18 @@
-# REV01 Wed Sep 11 13:00:05 WIB 2019
-# START Wed Sep 11 12:20:16 WIB 2019
-#
-# To Compile: make
-# To Clean:   make clean
-
 CC=gcc
 
-P01=program1
-P02=program2
-P03=program3
-
+P01=hello1
+P02=hello2
+P03=advhello1
+P04=advhello2
+P05=advhello3
+P06=program0
 EXECS= \
    $(P01) \
    $(P02) \
    $(P03) \
+   $(P04) \
+   $(P05) \
+   $(P06)
 
 
 EXTRA= \
@@ -29,8 +28,6 @@ clean: seealso
 
 seealso:
 	@echo "=============================="
-	@echo "Semangat Naufal!"
+	@echo "See also file Checklist02a.pdf"
 	@echo "=============================="
-
-
 
