@@ -10,11 +10,14 @@ P01=program1
 P02=program2
 P03=program3
 
-
 EXECS= \
    $(P01) \
    $(P02) \
    $(P03) \
+
+
+EXTRA= \
+   sltest2 \
 
 
 all:	seealso $(EXECS) 
@@ -26,7 +29,8 @@ clean: seealso
 
 seealso:
 	@echo "=============================="
-	@echo "See also file Checklist02a.pdf"
+	@echo "Semangat Naufal!"
 	@echo "=============================="
+
 
 

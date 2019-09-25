@@ -1,12 +1,14 @@
 CC=gcc
 
-P01=prog0
+P01=prog1
+P02=prog2
 P03=try1
 P04=try2
 
 
 EXECS= \
    $(P01) \
+   $(P02) \
    $(P03) \
    $(P04) \
 
