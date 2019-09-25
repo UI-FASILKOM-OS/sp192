@@ -6,18 +6,17 @@
 
 CC=gcc
 
+P00=program0
 P01=program1
 P02=program2
 P03=program3
 
+
 EXECS= \
+   $(P00) \
    $(P01) \
    $(P02) \
    $(P03) \
-
-
-EXTRA= \
-   sltest2 \
 
 
 all:	seealso $(EXECS) 
@@ -29,8 +28,7 @@ clean: seealso
 
 seealso:
 	@echo "=============================="
-	@echo "Semangat Naufal!"
+	@echo "See also file Checklist02a.pdf"
 	@echo "=============================="
-
 
 
