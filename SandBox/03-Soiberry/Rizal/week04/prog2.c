@@ -6,20 +6,31 @@
 #include <string.h>
 
 void main(int argc, char *argv[]) {
-   char **list [64][16];
-   int counter;
+   char list [16][32];
+   int currentLine = 0;
    int i = 0;
    FILE *queue = fopen("queue.txt", "r");
 
    while (fgets(list[i], sizeof list, queue) != NULL) {
-      list[i][strlen(list[i] - 1)] = '\0';
-      if (strcmp("prog1", list[i]) == 0) {
-         counter = i;
+      list[i][strlen(list[i] - 1)] = '\0'];
+      if (strcmp("prog2", list[i] == 0)) {
+         currentLine = i;
       }
       i++;
    }
+   
 
-   printf("array elements: %s", list);
+   if (fork() == 0) {
+      if (currentLine>0) { 
+         char executable[32];
+         sprintf(executable, "./%s", list[currentLine-1]);
+         execlp(executable, list[currentLine - 1], NULL);
+      } 
+
+   } else {
+      wait(NULL);
+      printf("Hello, program2\n");
+   }
 }
 
 /*

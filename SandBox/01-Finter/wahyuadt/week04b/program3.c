@@ -11,7 +11,7 @@ void main(int argc, char *argv[]) {
         int i = 0;
         while(fgets(queue[i], sizeof queue, fp) != NULL) {
                 queue[i][strlen(queue[i]) - 1] = '\0';
-                if (strcmp("program2", queue[i]) == 0) {
+                if (strcmp("program3", queue[i]) == 0) {
                         count = i;
                 }
                 i++;
@@ -26,7 +26,6 @@ void main(int argc, char *argv[]) {
                 }
         } else {
                 wait(NULL);
-                printf("Hello, program2\n");
+                printf("Hello, program3\n");
         }
 }
-

@@ -11,7 +11,16 @@ void main(int argc, char *argv[]) {
         int i = 0;
         while(fgets(queue[i], sizeof queue, fp) != NULL) {
                 queue[i][strlen(queue[i]) - 1] = '\0';
-                if (strcmp("program2", queue[i]) == 0) {
+		FILE *file; 
+                if (strcmp("program1", queue[i]) == 0) {
+			if ((file=fopen("program1.c", "program1.c"))){
+				printf("EXISTTSSS");
+				fclose(file);
+				return 1;
+			} else {
+				printf("NOOOT EXISSSSST");
+				return 0;
+			}
                         count = i;
                 }
                 i++;
@@ -26,7 +35,6 @@ void main(int argc, char *argv[]) {
                 }
         } else {
                 wait(NULL);
-                printf("Hello, program2\n");
+                printf("Hello, program1\n");
         }
 }
-
