@@ -7,5 +7,5 @@ int main ()
     int i;
     fp = fopen("queue.rxr", "w");
 
-    
+
 }
