@@ -3,6 +3,7 @@
 # DIRS is a list of all subdirectories containing makefiles
 # (The library directory is first so that the library gets built first)
 #
+CFLAGS += -g -I${TLPI_INCL_DIR}
 
 DIRS = 	lib \
     	acl altio \
