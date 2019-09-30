@@ -24,11 +24,12 @@ int main(int argc, char *argv[]) {
     int ssize = sizeof(response);
     truncate(SFILE, ssize);
     response* mymap = mmap(NULL, ssize, PROTECTION, VISIBILITY, mem, 0);
+
     if (mymap == MAP_FAILED) {
         printf("mmap(): FAILED\n");
         exit(1);
     }
-
+  
     sem_init(&(mymap->sync), 1, 0);
 
     char line[BUFFER_SIZE];
