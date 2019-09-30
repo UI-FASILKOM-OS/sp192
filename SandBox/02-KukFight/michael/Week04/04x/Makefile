@@ -3,16 +3,14 @@
 
 CC=gcc
 
-P01=user1
-P02=user2
-P03=program0
-P04=program1
+P01=program1
+P02=program2
+P03=program3
 
 EXECS= \
   $(P01) \
   $(P02) \
   $(P03) \
-  $(P04) \
 
 EXTRA= \
 
