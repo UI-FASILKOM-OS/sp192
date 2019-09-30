@@ -1,0 +1,7 @@
+not-c.c:1:1: error: unknown type name ‘Not’
+ Not a C program
+ ^~~
+not-c.c:1:7: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘C’
+ Not a C program
+       ^
+not-c.c:1:7: error: unknown type name ‘C’
