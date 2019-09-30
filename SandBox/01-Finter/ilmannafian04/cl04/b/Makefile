@@ -5,6 +5,7 @@
 # To Clean:   make clean
 
 CC=gcc
+CFLAGS=-pthread
 
 P00=program0
 P01=program1
@@ -19,13 +20,16 @@ EXECS= \
    $(P03) \
 
 
+MEMFILES= \
+   demo-files.bin \
+
 all:	seealso $(EXECS) 
 
 .phony: clean all seealso
 
 clean: seealso
 	rm -f ${EXECS} ${EXTRA}
-
+	rm -f ${MEMFILES}
 seealso:
 	@echo "=============================="
 	@echo "See also file Checklist02a.pdf"
