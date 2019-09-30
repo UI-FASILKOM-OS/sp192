@@ -1,4 +1,5 @@
 CC=gcc
+CFLAGS=-pthread
 
 P00=program0
 P01=program1
@@ -11,9 +12,12 @@ EXECS= \
 	   $(P02)\
 	   $(P03)\
 
+MEMFILES= \
+	   demo-file.bin \
 .phony: clean all
 
 all: $(EXECS)
 
 clean:
+	rm -f ${MEMFILES}
 	rm -f $(EXECS)
