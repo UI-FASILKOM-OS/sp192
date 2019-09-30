@@ -6,7 +6,7 @@
 #include <string.h>
 
 void main(int argc, char *argv[]) {
-   char **list [64][16];
+   char list [64][16];
    int counter;
    int i = 0;
    FILE *queue = fopen("queue.txt", "r");
@@ -19,7 +19,7 @@ void main(int argc, char *argv[]) {
       i++;
    }
 
-   printf("array elements: %s", list);
+   printf(list);
 }
 
 /*
