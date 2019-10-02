@@ -25,20 +25,20 @@ TEST_FILE="test-file.txt"
 echo ""; echo "These are collections of command lines."
 echo "Just run: \"bash $0 11 22 33 44 55\""
 echo ""; echo "*** Hit Enter Key ***";
-[ "$1" = "$XX" ] || (read YY)
+[ "$1" = "$XX" ] || (read YY; clear)
 
-cat $TEST_FILE | while read II; do
-   echo $II
-    COMMENT="RUNNING:  $II"
-    SIZE=${#COMMENT}
-    (( $SIZE > 80 )) && SIZE=80
-    STR=$(eval printf "%0.s=" {1..$SIZE})
-    echo "$STR"
-    echo $COMMENT
-    echo "$STR"
-    eval $II
-    echo ""; echo "*** Hit Enter Key ***";
-    [ "$1" = "$XX" ] || (read YY)
-done
+IFS=
+while read II; do
+   COMMENT="RUNNING:  $II"
+   SIZE=${#COMMENT}
+   (( $SIZE > 80 )) && SIZE=80
+   STR=$(eval printf "%0.s=" {1..$SIZE})
+   echo "$STR"
+   echo $COMMENT
+   echo "$STR"
+   eval "$II"
+   echo ""; echo "*** Hit Enter Key ***";
+   [ "$1" = "$XX" ] || (read YY)
+done < "$TEST_FILE"
 
 exit
