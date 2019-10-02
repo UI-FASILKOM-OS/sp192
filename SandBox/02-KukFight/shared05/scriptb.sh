@@ -51,5 +51,6 @@ do
   	echo "";
 
   	eval $line;
-  	read input </dev/tty -p "*** Press enter to continue ***"
+  	echo "*** Press enter to continue ***"
+  	read input </dev/tty 
 done < "$input"
