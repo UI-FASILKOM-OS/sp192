@@ -1,98 +1,20 @@
 #!/bin/bash
-# REV04: Thu Sep 13 10:07:03 WIB 2018
-# START: Tue Jan 30 19:50:17 WIB 2018
-
-# R: Just run "bash a01-README"
-#
-# TAKE NOTE: This is JUST a "READ ME" file for this demo!
-# If you do not understand, just IGNORE THIS SCRIPT!
-
-# Copyright (C) 2018 Rahmat M. Samik-Ibrahim
-# http://RahmatM.Samik-Ibrahim.vLSM.org/
-# This program is free script/software. This program is distributed in the hope 
-# that it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
 
 XX="xx"
-HEAD="a"
+TEST_FILE="test-file.txt"
 
-PREFIX="^#.R:"
-RESULT=`grep $PREFIX $0`
-clear
-echo ""; 
-echo "This screen size should be at least \"80 x 23\" characters..."
-echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
-echo ""; echo "*** HIT ENTER KEY ***";
-[ "$1" = "$XX" ] || (read YY)
+IFS=
+while read II; do
+   COMMENT="RUNNING:  $II"
+   SIZE=${#COMMENT}
+   (( $SIZE > 80 )) && SIZE=80
+   STR=$(eval printf "%0.s=" {1..$SIZE})
+   echo "$STR"
+   echo $COMMENT
+   echo "$STR"
+   eval "$II"
+   echo ""; echo "*** Hit Enter Key ***";
+   [ "$1" = "$XX" ] || (read YY)
+done < "$TEST_FILE"
 
-cat - << NNNN
-01 START START START START START START START START START START START START START
-12345678911234567892123456789312345678941234567895123456789612345678971234567898
-         10        20        30        40        50        60        70       79
-
-12345678911234567892123456789312345678941234567895123456789612345678971234567898
-
-         10        20        30        40        50        60        70       79
-12345678911234567892123456789312345678941234567895123456789612345678971234567898
-09 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-XXXXX                           TEST FOR 80 x 23                           XXXXX
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-12345678911234567892123456789312345678941234567895123456789612345678971234567898
-         10        20        30        40        50        60        70       79
-
-         10        20        30        40        50        60        70       79
-12345678911234567892123456789312345678941234567895123456789612345678971234567898
-19 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-         10        20        30        40        50        60        70       79
-12345678911234567892123456789312345678941234567895123456789612345678971234567898
-23 END END END END END END END END END  ====   H I T   E N T E R   K E Y   =====
-NNNN
-
-[ "$1" = "$XX" ] || (read YY)
-
-# 34567891123456789212345678931234567894123456789512345678961234567897
-# Notes (RPS)
-
-# Apa yang dijalankan script ini adalah mengecek ukuran dari layar 
-# terminal apakah sesuai
-# Ukuran yang diharapkan adalah 80 x 23, jika tidak begitu output yang 
-# dihasilkan akan terlihat berantakan atau ada longgar lalu script ini 
-# juga menunjukkan berkas-berkas yang ada dalam folder Week01 
-# (dengan perintah ls -AF)
-
-# ----------------------------------------
-# Line 16
-# Variabel bernama PREFIX beisi regex sebagai berikut: ^#.R:
-# Artinya: semua line yang dimulai dengan karakter #(apapun)R:'
-
-# Line 17
-# Variabel RESULT berisi command: grep $PREFIX $0
-# Artinya: ambil/grep baris dari file ini ($0) yang sesuai dengan 
-# format regex pada variabel $PREFIX
-
-# Line 20
-# Program melakukan printf dengan format berikut:
-# \n[%11s]: %s \n artinya: (new line) [(11 digit dari parameter 1)]: 
-# (string parameter 2)(new line)
-# Parameter 1 berisi cut -c 1-11 <<< $0 artinya: 
-#             lakukan cut karakter 1-11 dari nama file ini ($0)
-# Parameter 2 $RESULT berisi output dari command grep yang ada 
-#             di dalam variabel RESULT
-
-# Line 73
-# For II in ${HEAD}* artinya: Lakukan for loop untuk setiap file 
-# dengan awalan a
-# (a adalah isi dari variabel $HEAD)
-
-# Line 76
-# Sama dengan penjelasan Line 20 namun input dari command cut adalah
-# file-file yang masuk dalam kondisi for loop (file berawalan a)
-
-# Line 73-77 akan menampilkan judul file-file dalam directory 
-#       Week01 (11 karakter) dan baris berawalan # R: dari 
-#       masing-masing file
-
+exit
