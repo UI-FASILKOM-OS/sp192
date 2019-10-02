@@ -16,6 +16,25 @@ FILE2="$TESTDIR1/file2.txt"
 FILE3="$TESTDIR1/80x23.txt"
 DEL="xx"
 
+TDIR1 $TESTDIR2
+touch "$TESTDIR1/abcd 'xyz NNNN"
+touch "$TESTDIR1/#wah , berkas * ini ^ aneh & ajaib"
+touch "$TESTDIR1/[email anda : cicak@bin.kadal?!]"
+touch "$TESTDIR1/x y z \" z y x"
+touch "$TESTDIR1/x y z \" (z y) x"
+touch "$TESTDIR1/x y z \" (z y)"
+chmod -R 755 $TESTDIR1
+
+cat > $AWKPROG << NNNN
+# REV01 Thu Feb 16 15:25:32 WIB 2017
+# START Mon Sep  5 15:18:07 WIB 2016
+BEGIN           { FS=":"
+                  print ""
+                  print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+END             { print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+                { printf " %-20s  %5s  %5s \n", \$1,  \$3,  \$4 }
+NNNN
+
 
 cat - << NNNN
 START START START START START START START START START START START START START
@@ -49,5 +68,4 @@ input="me.txt"
 while IFS= read -r line
 do
   eval "$line"
-  read YY
 done < "$input"
