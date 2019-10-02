@@ -25,10 +25,10 @@ TEST_FILE="test-file.txt"
 echo ""; echo "These are collections of command lines."
 echo "Just run: \"bash $0 11 22 33 44 55\""
 echo ""; echo "*** Hit Enter Key ***";
-[ "$1" = "$XX" ] || (read YY)
+[ "$1" = "$XX" ] || (read YY; clear)
 
-cat $TEST_FILE | while read II; do
-   echo $II
+IFS=
+while read II; do
     COMMENT="RUNNING:  $II"
     SIZE=${#COMMENT}
     (( $SIZE > 80 )) && SIZE=80
@@ -38,14 +38,8 @@ cat $TEST_FILE | while read II; do
     echo "$STR"
     eval $II
     echo ""; echo "*** Hit Enter Key ***";
-    [ "$1" = "$XX" ] || (read YY)
-done
-
-
-echo ""; 
-echo "This screen size should be at least \"80 x 23\" characters..."
-echo "RESIZE the screen if this following message does not fit in \"80 x 23\"";
-echo "";
+    [ "$1" = "$XX" ] || (read Y)
+done < "$TEST_FILE"
 
 
 exit
