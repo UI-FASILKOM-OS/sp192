@@ -1,11 +1,7 @@
+#!/bin/bash
+
 XX="xx"
 TEST_FILE="test-file.txt"
-
-echo ""; 
-echo "This screen size should be at least \"80 x 23\" characters..."
-echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
-echo ""; echo "*** HIT ENTER KEY ***";
-[ "$1" = "$XX" ] || (read YY)
 
 IFS=
 while read II; do
