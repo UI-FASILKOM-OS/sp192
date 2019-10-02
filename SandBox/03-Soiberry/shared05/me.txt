@@ -1,3 +1,12 @@
+TDIR1 $TESTDIR2
+touch "$TESTDIR1/abcd 'xyz NNNN"
+touch "$TESTDIR1/#wah , berkas * ini ^ aneh & ajaib"
+touch "$TESTDIR1/[email anda : cicak@bin.kadal?!]"
+touch "$TESTDIR1/x y z \" z y x"
+touch "$TESTDIR1/x y z \" (z y) x"
+touch "$TESTDIR1/x y z \" (z y)"
+chmod -R 755 $TESTDIR1
+`
 ls -a
 ls -aF
 ls -al | head -8 ; echo "(...)"; ls -al | tail -8
