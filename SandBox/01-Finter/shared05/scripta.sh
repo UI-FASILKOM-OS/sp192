@@ -20,9 +20,6 @@ HEAD="a"
 PREFIX="^#.R:"
 RESULT=`grep $PREFIX $0`
 clear
-if [[ $RESULT ]] ; then
-   printf "\n[%11s]: %s\n" "`cut -c 1-11 <<< $0`" "$RESULT"
-fi
 echo ""; 
 echo "This screen size should be at least \"80 x 23\" characters..."
 echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
@@ -56,36 +53,6 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 NNNN
 
 [ "$1" = "$XX" ] || (read YY)
-echo ""; echo "Directory listing (running \"ls -AF\"):"
-echo "================================================================================"
-ls -AF
-echo "================================================================================"
-echo ""; echo "*** HIT ENTER KEY ***";
-[ "$1" = "$XX" ] || (read YY)
-
-cat - << NNNN
-================================================================================
-TAKE NOTE: 
-
-This is JUST a "READ ME" file for this demo.
-If you do not understand, just IGNORE THIS SCRIPT!
-
-Rahmat M. Samik-Ibrahim
-================================================================================
-NNNN
-
-echo ""; echo "*** HIT ENTER KEY ***";
-[ "$1" = "$XX" ] || (read YY)
-
-echo ""; echo "[-----------]: # R: LISTING THE LINES ========  ==  ==  ==  ==  ==  ==  ========"
-for II in ${HEAD}* ; do
-   RESULT=`grep $PREFIX $II`
-   if [[ $RESULT ]] ; then
-      printf "[%11s]: %s\n" "`cut -c 1-11 <<< $II`" "$RESULT"
-   fi
-done
-
-exit
 
 # 34567891123456789212345678931234567894123456789512345678961234567897
 # Notes (RPS)
