@@ -1,0 +1,3 @@
+ls
+ls -a
+ls -al | head -8 ; echo "(...)"; ls -al | tail -8
