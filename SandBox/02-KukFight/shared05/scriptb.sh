@@ -39,3 +39,17 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 12345678911234567892123456789312345678941234567895123456789612345678971234567898
 23 END END END END END END END END END  ====   H I T   E N T E R   K E Y   =====
 NNNN
+echo ""; echo "*** Hit enter key to continue ***";
+[ "$1" = "$XX" ] || (read YY)
+
+input="test-file.txt"
+while IFS= read -r line
+do
+	printf '=%.0s' {1..80};
+	echo "";
+  	echo "running $line";
+  	echo "";
+
+  	eval $line;
+  	read input </dev/tty -p "*** Press enter to continue ***"
+done < "$input"
