@@ -1,17 +1,18 @@
 CC=gcc
 
 P01=simpleread
-
+P02=simplewriteX
 
 EXECS= \
    $(P01) \
+   $(P02) \
 
 
 EXTRA= \
    dummy \
 
 
-all:	seealso $(EXECS) 
+all: seealso $(EXECS) 
 
 .phony: clean all seealso
 
