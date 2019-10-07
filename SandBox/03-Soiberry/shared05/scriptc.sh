@@ -30,9 +30,11 @@ read YY
 
 eval "mkdir ZB-source;cd ZB-source;touch file1;touch file2;touch file3; cd ../;"
 echo "Made ZB-source"
+echo "Hit Enter to delete ZB-source"
+read YY
 echo "Cleaning ZB-source.."
 eval "rm -r ZB-source"
-echo "Hit Enter"
+echo "Hit Enter to execute commands in test-file-c"
 read YY
 
 while IFS= read -r line
