@@ -8,4 +8,4 @@ sub(/^[^"]*"[^"]*" [^ ]* /,"");
 total += $1;
 }
 END {
-printf("%d\n", total);}' tmp.txt > total.txt
+printf("the total bytes recorded are %d\n", total);}' tmp.txt > total.txt
