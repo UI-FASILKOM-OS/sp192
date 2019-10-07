@@ -32,4 +32,4 @@ dummy ; printf "Return value = %s\n" $?
 function doawk { awk -f '"$TESTDIR1"'/file.awk /etc/passwd ; } ; 
 doawk | head -6 ; echo "(...)" ; doawk | tail -6 ; 
 /bin/bash --version
-time (echo -n "DELAY 3 seconds..";sleep 1;echo -n "..";sleep 1;echo -n "..";sleep 1;echo ".. DONE")
+time (echo -n "DELAY 3 seconds..";sleep 1;echo -n "..";sleep 1;echo -n "..";sleep 1;rm -r $TESTDIR1;rm -r $TESTDIR2;echo ".. DONE")
