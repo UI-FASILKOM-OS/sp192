@@ -4,8 +4,9 @@ awk 'BEGIN{
     total = 0;
 }
 {
-sub(/^[^"]*"[^"]*" [^ ]* /,"");
-total += $1;
+    sub(/^[^"]*"[^"]*" [^ ]* /,"");
+    total += $1;
 }
 END {
-printf("%d\n", total);}' temp.txt > total.txt
+    printf("%d\n", total);
+}'  temp.txt > total.txt
