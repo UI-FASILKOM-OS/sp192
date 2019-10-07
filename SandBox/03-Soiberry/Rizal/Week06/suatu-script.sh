@@ -1,6 +1,5 @@
 #!/bin/bash
-head -n 14105 < apache.txt | tail -n +335 >
-tmp.txt
+head -n 14105 < apache.txt | tail -n +335 > tmp.txt
 awk 'BEGIN{
 total = 0;
 }
