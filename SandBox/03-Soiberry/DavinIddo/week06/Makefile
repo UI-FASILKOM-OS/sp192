@@ -1,14 +1,14 @@
 
 
 
-P01=simple_read
-P02=exercise1
+P00=simple_read
+P01=exercise1
 
 
 
 EXECS= \
-       $(P01) \
-	   $(P02) \
+       $(P00) \
+	   $(P01) \
 	   
 
 all:	seealso $(EXECS)
