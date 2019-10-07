@@ -44,6 +44,31 @@ fi
 
 FILE="test-file.txt"
 
+eval rm -rf ZB-Source;mkdir ZB-Source; cd ZB-Source;touch dummy1 touch dummy2;
+
+echo "Currently on ZB-Source Directory"
+echo "--------------------------------"
+eval ls -al;
+echo "--   Press Enter to continue   --";
+read YY < /dev/tty
+
+echo "Deleting ZB-Source folder..."
+eval  cd ..; rm -rf ZB-Source
+
+echo ""
+
+echo "ZB-Source Folder Deleted!"
+echo ""
+echo "--   Press Enter to continue   --";
+read YY 
+
+eval clear;
+
+
+echo "--   Press Enter to continue   --";
+read YY 
+eval clear;
+
 while IFS= read -r COMMAND
 do
     echo "RUNNING: $COMMAND";
