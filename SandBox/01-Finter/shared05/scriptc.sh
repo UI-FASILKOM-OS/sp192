@@ -38,7 +38,7 @@ while read II; do
     echo "$STR"
     eval $II
     echo ""; echo "*** Hit Enter Key ***";
-    [ "$1" = "$XX" ] || (read Y)
+    [ "$1" = "$XX" ] || (read YY)
 done < "$TEST_FILE"
 
 
