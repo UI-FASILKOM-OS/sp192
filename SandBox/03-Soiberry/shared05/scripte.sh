@@ -1,24 +1,43 @@
-#!/bin/bash
-
-# author @nicolauscg
-XX="xx"
-HEAD="a"
-
+#!/bin/bash\
 PREFIX="^#.R:"
 RESULT=`grep $PREFIX $0`
-clear
-if [[ $RESULT ]] ; then
-   printf "\n[%11s]: %s\n" "`cut -c 1-11 <<< $0`" "$RESULT"
-fi
+HEAD="a"
+TMPHEAD="ZTMP"
+START="0"
+TMPSEQ="1000"
+TMPFILE="ZA-thisfile.tx"
+TMPFILE2="ZA-thisfile2.txt"
+TESTDIR1="ZB-SOURCE"
+TESTDIR2="ZC-BACKUP"
+AWKPROG="$TESTDIR1/file.awk"
+CPROGRAM="$TESTDIR1/program2.c"
+FILE1="$TESTDIR1/file1.txt"
+FILE2="$TESTDIR1/file2.txt"
+FILE3="$TESTDIR1/80x23.txt"
+DEL="xx"
 
-echo ""; 
-echo "This screen size should be at least \"80 x 23\" characters..."
-echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
-echo ""; echo "*** HIT ENTER KEY ***";
-[ "$1" = "$XX" ] || (read YY)
+TDIR1 $TESTDIR2
+touch "$TESTDIR1/abcd 'xyz NNNN"
+touch "$TESTDIR1/#wah , berkas * ini ^ aneh & ajaib"
+touch "$TESTDIR1/[email anda : cicak@bin.kadal?!]"
+touch "$TESTDIR1/x y z \" z y x"
+touch "$TESTDIR1/x y z \" (z y) x"
+touch "$TESTDIR1/x y z \" (z y)"
+chmod -R 755 $TESTDIR1
+
+cat > $AWKPROG << NNNN
+# REV01 Thu Feb 16 15:25:32 WIB 2017
+# START Mon Sep  5 15:18:07 WIB 2016
+BEGIN           { FS=":"
+                  print ""
+                  print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+END             { print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+                { printf " %-20s  %5s  %5s \n", \$1,  \$3,  \$4 }
+NNNN
+
 
 cat - << NNNN
-01 START START START START START START START START START START START START START
+START START START START START START START START START START START START START
 12345678911234567892123456789312345678941234567895123456789612345678971234567898
          10        20        30        40        50        60        70       79
 
@@ -42,20 +61,12 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 12345678911234567892123456789312345678941234567895123456789612345678971234567898
 23 END END END END END END END END END  ====   H I T   E N T E R   K E Y   =====
 NNNN
-echo ""; echo "*** Hit enter key to continue ***";
-[ "$1" = "$XX" ] || (read YY)
+read YY
 
-input="../test-file.txt"
-eval "rm -rf ZB-source; mkdir ZB-source; cd ZB-source; touch file1; touch file2; touch file3;"
+input="me.txt"
 while IFS= read -r line
 do
-	printf '=%.0s' {1..80};
-	echo "";
-  	echo "running $line";
-  	echo "";
-
-  	eval $line;
-  	echo "*** Press enter to continue ***"
-  	read input </dev/tty 
+  eval "$line"
+read YY
 done < "$input"
-eval "cd ..; rm -rf ZB-source;"
+

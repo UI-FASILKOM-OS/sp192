@@ -1,21 +1,5 @@
 #!/bin/bash
-
-# author @nicolauscg
-XX="xx"
-HEAD="a"
-
-PREFIX="^#.R:"
-RESULT=`grep $PREFIX $0`
-clear
-if [[ $RESULT ]] ; then
-   printf "\n[%11s]: %s\n" "`cut -c 1-11 <<< $0`" "$RESULT"
-fi
-
-echo ""; 
-echo "This screen size should be at least \"80 x 23\" characters..."
-echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
-echo ""; echo "*** HIT ENTER KEY ***";
-[ "$1" = "$XX" ] || (read YY)
+input="text-file-c.txt"
 
 cat - << NNNN
 01 START START START START START START START START START START START START START
@@ -42,20 +26,18 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 12345678911234567892123456789312345678941234567895123456789612345678971234567898
 23 END END END END END END END END END  ====   H I T   E N T E R   K E Y   =====
 NNNN
-echo ""; echo "*** Hit enter key to continue ***";
-[ "$1" = "$XX" ] || (read YY)
+read YY
 
-input="../test-file.txt"
-eval "rm -rf ZB-source; mkdir ZB-source; cd ZB-source; touch file1; touch file2; touch file3;"
+eval "mkdir ZB-source;cd ZB-source;touch file1;touch file2;touch file3; cd ../;"
+echo "Made ZB-source"
+echo "Hit Enter to delete ZB-source"
+read YY
+echo "Cleaning ZB-source.."
+eval "rm -r ZB-source"
+echo "Hit Enter to execute commands in test-file-c"
+read YY
+
 while IFS= read -r line
 do
-	printf '=%.0s' {1..80};
-	echo "";
-  	echo "running $line";
-  	echo "";
-
-  	eval $line;
-  	echo "*** Press enter to continue ***"
-  	read input </dev/tty 
+  eval "$line"
 done < "$input"
-eval "cd ..; rm -rf ZB-source;"

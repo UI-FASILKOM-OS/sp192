@@ -1,0 +1,3 @@
+ls
+ls -al | head -8 ; echo "(...)"; ls -al | tail -8
+git status
