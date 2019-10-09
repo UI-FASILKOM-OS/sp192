@@ -7,13 +7,11 @@ FILE2="$TESTDIR1/file2.txt"
 DEL="xx"
 
 echo $1
-if [ $1 == "DELETE" ]
+if [ $# != 0 ] && [ $1 == "DELETE" ]
 then
     rm -rf $TESTDIR1
     exit 0
 fi
-
-echo lol
 
 echo ""; 
 echo "This screen size should be at least \"80 x 23\" characters..."
