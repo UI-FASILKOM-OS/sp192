@@ -1,19 +1,34 @@
-XX="xx"
-HEAD="a"
+#!/bin/bash\
 PREFIX="^#.R:"
 RESULT=`grep $PREFIX $0`
-clear
-if [[ $RESULT ]] ; then
-   printf "\n[%11s]: %s\n" "`cut -c 1-11 <<< $0`" "$RESULT"
-fi
-echo ""; 
-echo "This screen size should be at least \"80 x 23\" characters..."
-echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
-echo ""; echo "*** HIT ENTER KEY ***";
-[ "$1" = "$XX" ] || (read YY)
+HEAD="a"
+TMPHEAD="ZTMP"
+START="0"
+TMPSEQ="1000"
+TMPFILE="ZA-thisfile.tx"
+TMPFILE2="ZA-thisfile2.txt"
+TESTDIR1="ZB-SOURCE"
+TESTDIR2="ZC-BACKUP"
+AWKPROG="$TESTDIR1/file.awk"
+CPROGRAM="$TESTDIR1/program2.c"
+FILE1="$TESTDIR1/file1.txt"
+FILE2="$TESTDIR1/file2.txt"
+FILE3="$TESTDIR1/80x23.txt"
+DEL="xx"
+
+cat > $AWKPROG << NNNN
+# REV01 Thu Feb 16 15:25:32 WIB 2017
+# START Mon Sep  5 15:18:07 WIB 2016
+BEGIN           { FS=":"
+                  print ""
+                  print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+END             { print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+                { printf " %-20s  %5s  %5s \n", \$1,  \$3,  \$4 }
+NNNN
+
 
 cat - << NNNN
-01 START START START START START START START START START START START START START
+START START START START START START START START START START START START START
 12345678911234567892123456789312345678941234567895123456789612345678971234567898
          10        20        30        40        50        60        70       79
 
@@ -37,39 +52,21 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 12345678911234567892123456789312345678941234567895123456789612345678971234567898
 23 END END END END END END END END END  ====   H I T   E N T E R   K E Y   =====
 NNNN
+read YY
 
-if (read YY) then
-    clear
-fi
 
-FILE="test-file.txt"
+mkdir "$TESTDIR1"
+mkdir "$TESTDIR2"
+touch "$FILE1"
+touch "$FILE2"
+touch "$FILE3"
+touch "$AWKPROG"
+touch "$CPROGRAM"
+chmod -R 755 $TESTDIR1
 
-eval rm -rf ZB-Source;mkdir ZB-Source; cd ZB-Source;touch dummy1 touch dummy2;
-
-echo "Currently on ZB-Source Directory"
-echo "--------------------------------"
-eval ls -al;
-echo "--   Press Enter to continue   --";
-read YY < /dev/tty
-
-echo "Deleting ZB-Source folder..."
-eval  cd ..; rm -rf ZB-Source
-
-echo ""
-
-echo "ZB-Source Folder Deleted!"
-echo ""
-echo "--   Press Enter to continue   --";
-read YY 
-
-eval clear;
-
-while IFS= read -r COMMAND
+input="test-file.txt"
+while IFS= read -r line
 do
-    echo "RUNNING: $COMMAND";
-    eval $COMMAND;
-    echo "";
-    echo "--   Press Enter to continue   --";
-    read YY < /dev/tty
-    clear;
-done < "$FILE"
+  eval "$line"
+done < "$input"
+
