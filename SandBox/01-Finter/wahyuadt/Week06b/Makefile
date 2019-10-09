@@ -6,16 +6,10 @@
 
 CC=gcc
 
-P01=simple_read
-
+P00=simple_read
 
 EXECS= \
-   $(P01) \
-
-
-EXTRA= \
-   sltest2 \
-
+   $(P00) \
 
 all:	seealso $(EXECS) 
 
@@ -23,11 +17,9 @@ all:	seealso $(EXECS)
 
 clean: seealso
 	rm -f ${EXECS} ${EXTRA}
-
 seealso:
 	@echo "=============================="
-	@echo "  - Succesfully compiled! -   "
+	@echo "See also file Checklist02a.pdf"
 	@echo "=============================="
-
 
 
