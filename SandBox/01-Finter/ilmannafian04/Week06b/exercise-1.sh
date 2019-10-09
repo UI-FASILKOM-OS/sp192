@@ -2,7 +2,7 @@
 
 head -n 14105 < apache.txt | tail -n +335 > tmp.txt
 
-awk 'begin{
+awk 'BEGIN{
     total = 0;
 } {
     sub(/^[^"]*"[^"]*" [^ ]* /,"");
