@@ -1,7 +1,7 @@
 CC=gcc
 
 P01=simple_read
-P01=simple_writeX
+P02=simple_writeX
 
 
 EXECS= \
@@ -18,5 +18,5 @@ clean: seealso
 
 seealso:
 	@echo "=============================="
-	@echo "See also file Checklist02a.pdf"
+	@echo 			  "Done"
 	@echo "=============================="
