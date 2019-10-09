@@ -3,11 +3,12 @@
 
 P00=simple_read
 P01=simple_writeX
+P02=exercise1
 
 EXECS= \
 		$(P00) \
 		$(P01) \
-		# $(P02) \
+		$(P02) \
 
 
 all:	seealso $(EXECS)
