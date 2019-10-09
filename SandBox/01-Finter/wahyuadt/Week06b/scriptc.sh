@@ -1,19 +1,27 @@
+#!/bin/bash
+# REV11: Mon Aug 27 19:18:47 WIB 2018
+# START: Mon Sep  5 11:12:35 WIB 2016
+
+# R: These are collections of command lines. Run "bash a03-command-lines-demo 11 22 33 44 55"
+
+# Copyright (C) 2016-2018 Rahmat M. Samik-Ibrahim
+# http://RahmatM.Samik-Ibrahim.vLSM.org/
+# This program is free script/software. This program is distributed in the hope
+# that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
 XX="xx"
+TMPFILE="ZA-thisfile.tx"
 TESTDIR1="ZB-SOURCE"
-AWKPROG="$TESTDIR1/file.awk"
-CPROGRAM="$TESTDIR1/program2.c"
-FILE1="$TESTDIR1/file1.txt"
-FILE2="$TESTDIR1/file2.txt"
-DEL="xx"
-TESTFILE="test-file.txt"
+TESTDIR2="ZC-BACKUP"
+TEST_FILE="test-file.txt"
 
-if [ $# != 0 ] && [ $1 == "DELETE" ]
-then
-    rm -rf $TESTDIR1
-    exit 0
-fi
-
-echo ""; 
+[ -d $TESTDIR1 ] && [ -d $TESTDIR2 ] && [ -f $TMPFILE ] || {
+   echo ""; echo "No $TESTDIR1 or $TESTDIR2 or $TMPFILE."
+   echo "Please run script \"a02-sort-n-prepare\" first!"; echo ""
+   exit
+}
+echo "";
 echo "This screen size should be at least \"80 x 23\" characters..."
 echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
 echo ""; echo "*** HIT ENTER KEY ***";
@@ -45,64 +53,25 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 23 END END END END END END END END END  ====   H I T   E N T E R   K E Y   =====
 NNNN
 
+
 [ "$1" = "$XX" ] || (read YY)
 
-rm -rf $TESTDIR1
 
-[ "$1" = "$DEL" ] && exit 0
-
-mkdir -p $TESTDIR1
+mkdir -p $TESTDIR1 $TESTDIR2
+touch "$TESTDIR1/abcd 'xyz NNNN"
+touch "$TESTDIR1/#wah , berkas * ini ^ aneh & ajaib"
+touch "$TESTDIR1/[email anda : cicak@bin.kadal?!]"
+touch "$TESTDIR1/x y z \" z y x"
+touch "$TESTDIR1/x y z \" (z y) x"
+touch "$TESTDIR1/x y z \" (z y)"
 chmod -R 755 $TESTDIR1
-
-cat > $AWKPROG << NNNN
-# REV01 Thu Feb 16 15:25:32 WIB 2017
-# START Mon Sep  5 15:18:07 WIB 2016
-BEGIN           { FS=":" 
-                  print ""
-                  print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
-END             { print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
-                { printf " %-20s  %5s  %5s \n", \$1,  \$3,  \$4 }
-NNNN
-cat > $CPROGRAM << NNNN
-/* REV02 Fri Sep  8 21:17:45 WIB 2017
- * START Mon Feb 13 20:22:22 WIB 2017
- * (c) 2016-2017 Rahmat M. Samik-Ibrahim
- * This is a free software.
- */
-#define LOOP1 400
-#define LOOP2 1000000
-#include <stdio.h>
-
-void main() {
-   int ii, jj, kk=0;
-   for (ii=0;ii<LOOP1;ii++) {
-      for (jj=0;jj<LOOP2;jj++) {
-         kk = kk + ii;
-      }
-   }
-   printf("Result=%d\n",kk);
-}
-NNNN
-cat > $FILE1 << NNNN
-Potong Bebek Angsa, masak di kuali...
-Nona minta dansa, dansa empat kali...
-Sorong ke kiri, sorong ke kanan...
-Lala lala lala lala la la la... 
-NNNN
-cat > $FILE2 << NNNN
-Potong Bebek Angsa, masak di kuali...
-Nona minta dansa, dansa empat kali...
-Sorong ke kiri, Biak ke kanan...
-Lala lala lala lala la Papua... 
-NNNN
-chmod 644 $AWKPROG $CPROGRAM $FILE1 $FILE2
-
 echo ""; echo "These are collections of command lines."
 echo "Just run: \"bash $0 11 22 33 44 55\""
 echo ""; echo "*** Hit Enter Key ***";
-[ "$1" = "$XX" ] || (read YY ; clear)
+[ "$1" = "$XX" ] || (read YY; clear)
 
-while read -u 5 II; do
+IFS=
+while read II; do
     COMMENT="RUNNING:  $II"
     SIZE=${#COMMENT}
     (( $SIZE > 80 )) && SIZE=80
@@ -112,5 +81,8 @@ while read -u 5 II; do
     echo "$STR"
     eval $II
     echo ""; echo "*** Hit Enter Key ***";
-    [ "$1" = "$XX" ] || (read YY ; clear)
-done 5< "$TESTFILE"
+    [ "$1" = "$XX" ] || (read YY)
+done < "$TEST_FILE"
+
+
+exit
