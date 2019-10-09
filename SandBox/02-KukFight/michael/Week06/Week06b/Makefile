@@ -1,23 +1,17 @@
-# REV01 Wed Sep 11 13:00:05 WIB 2019
-# START Wed Sep 11 12:20:16 WIB 2019
-#
 # To Compile: make
-# To Clean:   make clean
+# To Clean: make clean
 
 CC=gcc
 
 P01=simple_read
 
-
 EXECS= \
-   $(P01) \
-
+  $(P01) \
+  $(P02) \
 
 EXTRA= \
-   sltest2 \
 
-
-all:	seealso $(EXECS) 
+all: seealso $(EXECS)
 
 .phony: clean all seealso
 
@@ -26,8 +20,5 @@ clean: seealso
 
 seealso:
 	@echo "=============================="
-	@echo "  - Succesfully compiled! -   "
+	@echo "See also file Checklist06.pdf"
 	@echo "=============================="
-
-
-
