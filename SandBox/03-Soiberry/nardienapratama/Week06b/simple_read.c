@@ -1,7 +1,6 @@
 #include <unistd.h>
 #include <stdlib.h>
-
-int main() {
+int main(){
     char buffer[128];
     int nread;
     nread = read(0, buffer, 128);
