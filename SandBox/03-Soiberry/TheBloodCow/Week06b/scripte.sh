@@ -64,7 +64,7 @@ touch "$AWKPROG"
 touch "$CPROGRAM"
 chmod -R 755 $TESTDIR1
 
-input="me.txt"
+input="test-file.txt"
 while IFS= read -r line
 do
   eval "$line"
