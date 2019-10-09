@@ -39,6 +39,8 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 23 END END END END END END END END END  ====   H I T   E N T E R   K E Y   =====
 NNNN
 
+eval rm -rf ZB-Source; mkdir ZB-source; cd ZB-source; touch dummy1 touch dummy2;
+
 
 echo ""; echo "*** Hit enter key to continue ***";
 [ "$1" = "$XX" ] || (read YY)
