@@ -67,6 +67,37 @@ Sorong ke kiri, Biak ke kanan...
 Lala lala lala lala la Papua... 
 NNNN
 
+cat > $AWKPROG << NNNN
+# REV01 Thu Feb 16 15:25:32 WIB 2017
+# START Mon Sep  5 15:18:07 WIB 2016
+BEGIN           { FS=":" 
+                  print ""
+                  print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+END             { print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+                { printf " %-20s  %5s  %5s \n", \$1,  \$3,  \$4 }
+NNNN
+
+cat > $CPROGRAM << NNNN
+/* REV02 Fri Sep  8 21:17:45 WIB 2017
+ * START Mon Feb 13 20:22:22 WIB 2017
+ * (c) 2016-2017 Rahmat M. Samik-Ibrahim
+ * This is a free software.
+ */
+#define LOOP1 400
+#define LOOP2 1000000
+#include <stdio.h>
+
+void main() {
+   int ii, jj, kk=0;
+   for (ii=0;ii<LOOP1;ii++) {
+      for (jj=0;jj<LOOP2;jj++) {
+         kk = kk + ii;
+      }
+   }
+   printf("Result=%d\n",kk);
+}
+NNNN
+
 chmod 644 $AWKPROG $CPROGRAM $FILE1 $FILE2
 
 echo ""; echo "These are collections of command lines."
