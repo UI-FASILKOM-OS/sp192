@@ -1,4 +1,17 @@
-#!/bin/bash
+XX="xx"
+HEAD="a"
+
+PREFIX="^#.R:"
+RESULT=`grep $PREFIX $0`
+clear
+if [[ $RESULT ]] ; then
+   printf "\n[%11s]: %s\n" "`cut -c 1-11 <<< $0`" "$RESULT"
+fi
+echo "";
+echo "This screen size should be at least \"80 x 23\" characters..."
+echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
+echo ""; echo "*** HIT ENTER KEY ***";
+[ "$1" = "$XX" ] || (read YY)
 
 cat - << NNNN
 01 START START START START START START START START START START START START START
@@ -25,22 +38,3 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 12345678911234567892123456789312345678941234567895123456789612345678971234567898
 23 END END END END END END END END END  ====   H I T   E N T E R   K E Y   =====
 NNNN
-read YY
-
-echo "Creating directory ZB-SOURCE that contain some files"
-eval "mkdir ZB-SOURCE;cd ZB-SOURCE;touch file1;touch file2;cd .."
-echo "Press ENTER to Delete ZB-SOURCE"
-read YY
-
-
-echo "Deleting directory..."
-eval "rm -r ZB-SOURCE;"
-echo "Hit ENTER to continue"
-read YY
-
-
-input="test-file-d.txt"
-while IFS= read -r line
-do
-  eval "$line"
-done < "$input"

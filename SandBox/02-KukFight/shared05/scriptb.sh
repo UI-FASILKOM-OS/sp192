@@ -1,3 +1,6 @@
+#!/bin/bash
+
+# author @nicolauscg
 XX="xx"
 HEAD="a"
 
@@ -42,7 +45,8 @@ NNNN
 echo ""; echo "*** Hit enter key to continue ***";
 [ "$1" = "$XX" ] || (read YY)
 
-input="test-file.txt"
+input="../test-file.txt"
+eval "rm -rf ZB-source; mkdir ZB-source; cd ZB-source; touch file1; touch file2; touch file3;"
 while IFS= read -r line
 do
 	printf '=%.0s' {1..80};
@@ -54,3 +58,4 @@ do
   	echo "*** Press enter to continue ***"
   	read input </dev/tty 
 done < "$input"
+eval "cd ..; rm -rf ZB-source;"

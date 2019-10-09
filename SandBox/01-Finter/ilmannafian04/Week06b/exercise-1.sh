@@ -8,5 +8,9 @@ awk 'begin{
     sub(/^[^"]*"[^"]*" [^ ]* /,"");
     total += $1;
 } END {
+<<<<<<< HEAD
     printf("%d\n", total);
 }' tmp.txt > total.txt
+=======
+    printf)'
+>>>>>>> ea2464ea6c11aed638cbd0bc60faca43dce137e9
