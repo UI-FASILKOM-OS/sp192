@@ -5,8 +5,8 @@ CPROGRAM="$TESTDIR1/program2.c"
 FILE1="$TESTDIR1/file1.txt"
 FILE2="$TESTDIR1/file2.txt"
 DEL="xx"
+TESTFILE="test-file.txt"
 
-echo $1
 if [ $# != 0 ] && [ $1 == "DELETE" ]
 then
     rm -rf $TESTDIR1
@@ -96,3 +96,21 @@ Sorong ke kiri, Biak ke kanan...
 Lala lala lala lala la Papua... 
 NNNN
 chmod 644 $AWKPROG $CPROGRAM $FILE1 $FILE2
+
+echo ""; echo "These are collections of command lines."
+echo "Just run: \"bash $0 11 22 33 44 55\""
+echo ""; echo "*** Hit Enter Key ***";
+[ "$1" = "$XX" ] || (read YY ; clear)
+
+while read -u 5 II; do
+    COMMENT="RUNNING:  $II"
+    SIZE=${#COMMENT}
+    (( $SIZE > 80 )) && SIZE=80
+    STR=$(eval printf "%0.s=" {1..$SIZE})
+    echo "$STR"
+    echo $COMMENT
+    echo "$STR"
+    eval $II
+    echo ""; echo "*** Hit Enter Key ***";
+    [ "$1" = "$XX" ] || (read YY ; clear)
+done 5< "$TESTFILE"
