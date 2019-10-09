@@ -6,6 +6,7 @@ P01=simple_writeX
 P02=exercise1
 P03=exercise2
 P04=exercise3
+P05=exercise4
 
 EXECS= \
 		$(P00) \
@@ -13,6 +14,7 @@ EXECS= \
 		$(P02) \
 		$(P03) \
 		$(P04) \
+		$(P05) \
 
 
 all:	seealso $(EXECS)
