@@ -6,22 +6,21 @@
 
 CC=gcc
 
-P00=program0
+P00=simple_read
 
 
 EXECS= \
-   $(P00) \
-  
-   
+	$(P00) \
+
 
 all:    seealso $(EXECS) 
 
 .phony: clean all seealso
 
 clean: seealso
-    rm -f ${EXECS}
+	rm -f ${EXECS}
 
 seealso:
-    @echo "=============================="
-    @echo "See also file Checklist02a.pdf"
-    @echo "=============================="
+	@echo "=============================="
+	@echo "See also file Checklist02a.pdf"
+	@echo "=============================="
