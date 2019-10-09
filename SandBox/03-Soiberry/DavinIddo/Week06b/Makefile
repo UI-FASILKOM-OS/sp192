@@ -2,13 +2,11 @@
 
 
 P00=simple_read
-# P01=program1
-# P02=program2
-
+P01=simple_writeX
 
 EXECS= \
 		$(P00) \
-		# $(P01) \
+		$(P01) \
 		# $(P02) \
 
 
