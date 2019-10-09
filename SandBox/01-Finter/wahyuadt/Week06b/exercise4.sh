@@ -1,4 +1,4 @@
-grep "HTTP/1.1\" 200" proses.txt | awk 'BEGIN{
+grep "HTTP/1.1\" 200" apache.txt | awk 'BEGIN{
 	IPMaks= "";
 	jumlahDL = 0;
 }{
@@ -11,8 +11,7 @@ grep "HTTP/1.1\" 200" proses.txt | awk 'BEGIN{
 		IPMaks = "";      
 		jumlahDL = 0;      
 		for(pengguna in IP) {         
-			if((jam == substr(pengguna,1,5))&&(IP[pengguna] 
-> jumlahDL)) {            
+			if((jam == substr(pengguna,1,5))&&(IP[pengguna] > jumlahDL)) {            
 		IPMaks = substr(pengguna,6);            
 		jumlahDL = IP[pengguna];         
 		}      
