@@ -6,8 +6,8 @@
 
 CC=gcc
 
-P00=simple_read
-P01=simple_writeX
+P00=simple_write
+P01=simple_read
 
 EXECS= \
 	$(P00) \

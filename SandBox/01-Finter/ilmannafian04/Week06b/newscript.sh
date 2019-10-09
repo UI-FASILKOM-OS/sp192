@@ -1,11 +1,20 @@
 XX="xx"
-HEAD="a"
-PREFIX="^#.R:"
-RESULT=`grep $PREFIX $0`
-clear
-if [[ $RESULT ]] ; then
-   printf "\n[%11s]: %s\n" "`cut -c 1-11 <<< $0`" "$RESULT"
+TESTDIR1="ZB-SOURCE"
+AWKPROG="$TESTDIR1/file.awk"
+CPROGRAM="$TESTDIR1/program2.c"
+FILE1="$TESTDIR1/file1.txt"
+FILE2="$TESTDIR1/file2.txt"
+DEL="xx"
+
+echo $1
+if [ $1 == "DELETE" ]
+then
+    rm -rf $TESTDIR1
+    exit 0
 fi
+
+echo lol
+
 echo ""; 
 echo "This screen size should be at least \"80 x 23\" characters..."
 echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
@@ -38,38 +47,54 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 23 END END END END END END END END END  ====   H I T   E N T E R   K E Y   =====
 NNNN
 
-if (read YY) then
-    clear
-fi
+[ "$1" = "$XX" ] || (read YY)
 
-FILE="test-file.txt"
+rm -rf $TESTDIR1
 
-eval rm -rf ZB-Source;mkdir ZB-Source; cd ZB-Source;touch dummy1 touch dummy2;
+[ "$1" = "$DEL" ] && exit 0
 
-echo "Currently on ZB-Source Directory"
-echo "--------------------------------"
-eval ls -al;
-echo "--   Press Enter to continue   --";
-read YY < /dev/tty
+mkdir -p $TESTDIR1
+chmod -R 755 $TESTDIR1
 
-echo "Deleting ZB-Source folder..."
-eval  cd ..; rm -rf ZB-Source
+cat > $AWKPROG << NNNN
+# REV01 Thu Feb 16 15:25:32 WIB 2017
+# START Mon Sep  5 15:18:07 WIB 2016
+BEGIN           { FS=":" 
+                  print ""
+                  print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+END             { print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+                { printf " %-20s  %5s  %5s \n", \$1,  \$3,  \$4 }
+NNNN
+cat > $CPROGRAM << NNNN
+/* REV02 Fri Sep  8 21:17:45 WIB 2017
+ * START Mon Feb 13 20:22:22 WIB 2017
+ * (c) 2016-2017 Rahmat M. Samik-Ibrahim
+ * This is a free software.
+ */
+#define LOOP1 400
+#define LOOP2 1000000
+#include <stdio.h>
 
-echo ""
-
-echo "ZB-Source Folder Deleted!"
-echo ""
-echo "--   Press Enter to continue   --";
-read YY 
-
-eval clear;
-
-while IFS= read -r COMMAND
-do
-    echo "RUNNING: $COMMAND";
-    eval $COMMAND;
-    echo "";
-    echo "--   Press Enter to continue   --";
-    read YY < /dev/tty
-    clear;
-done < "$FILE"
+void main() {
+   int ii, jj, kk=0;
+   for (ii=0;ii<LOOP1;ii++) {
+      for (jj=0;jj<LOOP2;jj++) {
+         kk = kk + ii;
+      }
+   }
+   printf("Result=%d\n",kk);
+}
+NNNN
+cat > $FILE1 << NNNN
+Potong Bebek Angsa, masak di kuali...
+Nona minta dansa, dansa empat kali...
+Sorong ke kiri, sorong ke kanan...
+Lala lala lala lala la la la... 
+NNNN
+cat > $FILE2 << NNNN
+Potong Bebek Angsa, masak di kuali...
+Nona minta dansa, dansa empat kali...
+Sorong ke kiri, Biak ke kanan...
+Lala lala lala lala la Papua... 
+NNNN
+chmod 644 $AWKPROG $CPROGRAM $FILE1 $FILE2
