@@ -1,0 +1,9 @@
+   - test the script "bash newscript.sh aa bbb ccc dddd eeee"
+   - if your run "bash newscript.sh DELETE", it will delete:
+   - "$TESTDIR1" directory
+   -- "$TESTDIR1/file1.txt"
+   -- "$TESTDIR1/file2.txt"
+   -- "$TESTDIR1/file.awk"
+   -- "$TESTDIR1/program2.c"
+
+   - (pull and) push sp192
