@@ -63,10 +63,10 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 NNNN
 read YY
 
-
 input="me.txt"
 while IFS= read -r line
 do
   eval "$line"
+read YY
 done < "$input"
 
