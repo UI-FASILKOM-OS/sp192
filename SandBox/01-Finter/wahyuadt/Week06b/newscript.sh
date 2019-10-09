@@ -9,6 +9,7 @@ if [ $# != 0 ] && [ $1 == "DELETE" ]; then
     exit
 fi
 
+
 echo ""; 
 echo "This screen size should be at least \"80 x 23\" characters..."
 echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
