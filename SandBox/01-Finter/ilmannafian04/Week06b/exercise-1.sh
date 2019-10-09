@@ -8,4 +8,5 @@ awk 'begin{
     sub(/^[^"]*"[^"]*" [^ ]* /,"");
     total += $1;
 } END {
-    printf)'
+    printf("%d\n", total);
+}' tmp.txt > total.txt
