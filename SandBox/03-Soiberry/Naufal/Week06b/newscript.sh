@@ -1,5 +1,6 @@
 #!/bin/bash
 input="test-file.txt"
+DELETE = "DELETE"
 
 cat - << NNNN
 01 START START START START START START START START START START START START START
@@ -37,8 +38,7 @@ read YY
 # echo "Hit Enter to execute commands in test-file-c"
 # read YY
 
-$DELETE = "DELETE"
-if [ "$1" = "$DELETE"]
+if [ "$1" = "$DELETE" ]
     then
         echo "Deleteing dirctory TESTDIR1"
         eval "rm -r TESTDIR1;"
