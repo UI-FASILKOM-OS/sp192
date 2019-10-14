@@ -1,6 +1,4 @@
-#!/bin/bash
-input="test-file.txt"
-DELETE = "DELETE"
+DELETE="DELETE"
 
 cat - << NNNN
 01 START START START START START START START START START START START START START
@@ -29,18 +27,9 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 NNNN
 read YY
 
-eval "mkdir TESTDIR1;cd TESTDIR1;touch file1.txt;touch file2.txt;touch file3.txt; cd ../;"
-echo "Made TESTDIR1"
-echo "Hit Enter to continue"
-read YY
-# echo "Cleaning ZB-source.."
-# eval "rm -r ZB-source"
-# echo "Hit Enter to execute commands in test-file-c"
-# read YY
-
 if [ "$1" = "$DELETE" ]
     then
-        echo "Deleteing dirctory TESTDIR1"
+        echo "Deleting directory TESTDIR1"
         eval "rm -r TESTDIR1;"
         echo "Press ENTER to FINISH"
     else
@@ -50,6 +39,8 @@ if [ "$1" = "$DELETE" ]
         echo "Press ENTER to FINISH"
 fi
 read YY
+
+input="test-file.txt"
 
 while IFS= read -r line
 do
