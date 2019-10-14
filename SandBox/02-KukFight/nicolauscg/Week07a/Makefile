@@ -1,9 +1,10 @@
-ifeq ($(PREFIX),)
-    PREFIX := /usr/local
-endif
-
 install:
-	sudo cp git_pull_push.sh /usr/local/bin/git_pull_push
-	sudo chmod +x /usr/local/bin/git_pull_push
-	sudo cp update_system.sh /usr/local/bin/update_system
-	sudo chmod +x /usr/local/bin/update_system
+	sudo cp autopush.sh /usr/local/bin/autopush
+	sudo chmod +x /usr/local/bin/autopush
+	sudo cp updatesys.sh /usr/local/bin/updatesys
+	sudo chmod +x /usr/local/bin/updatesys
+	sudo cp maintainrepo.sh /usr/local/bin/maintainrepo
+	sudo chmod +x /usr/local/bin/maintainrepo
+
+uninstall:
+	sudo rm -f /usr/local/bin/autopush /usr/local/bin/updatesys /usr/local/bin/maintainrepo
