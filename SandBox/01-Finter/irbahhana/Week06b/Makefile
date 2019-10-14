@@ -7,37 +7,31 @@
 CC=gcc
 
 P00=simple_read
-P01=simple_writeX
-P02=tmp.txt
-P03=tmp2.txt
-P04=tmp3.txt
-P05=total.txt
-P06=sering.txt
-P07=unik.txt
-P08=laporan.txt
+P01=simple_write
+F00=tmp.txt
+F01=tmp1.txt
+F02=tmp2.txt
+F03=tmp3.txt
 
 EXECS= \
    $(P00) \
    $(P01) \
 
-FILES=\
-   $(P02)\
-   $(P03)\
-   $(P04)\
-   $(P05)\
-   $(P06)\
-   $(P07)\
-   $(P08)\
+FILES= \
+$(F00) \
+$(F01) \
+$(F02) \
+$(F03)\
 
 all:	seealso $(EXECS) 
-:wQ
+
 .phony: clean all seealso
 
 clean: seealso
-	rm -f ${EXECS} ${FILES}
+	rm -f ${EXECS} ${FILES} ${EXTRA}
 seealso:
 	@echo "=============================="
-	@echo "ALOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+	@echo "Semangat Nopal!"
 	@echo "=============================="
 
 
