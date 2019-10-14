@@ -1,4 +1,4 @@
-# REV01 Wed Sep 11 13:00:05 WIB 2019
+# REV01 Mon Oct 14 13:42:00 WIB 2019
 # START Wed Sep 11 12:20:16 WIB 2019
 #
 # To Compile: make
@@ -39,8 +39,8 @@ all:	seealso $(EXECS)
 clean: seealso
 	rm -rf ${EXECS} ${TMP}
 seealso:
-	@echo "=============================="
-	@echo "See also file Checklist02a.pdf"
-	@echo "=============================="
+	@echo "================================================"
+	@echo "See also https://github.com/UI-FASILKOM-OS/sp192"
+	@echo "================================================"
 
 
