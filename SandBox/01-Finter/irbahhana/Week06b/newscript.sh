@@ -46,14 +46,25 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 NNNN
 
 [ "$1" = "$XX" ] || (read YY)
+
 rm -rf $TESTDIR1
 mkdir -p $TESTDIR1
+FILE1="$TESTDIR1/file1.txt"
+FILE2="$TESTDIR1/file2.txt"
+AWKPROG="$TESTDIR1/file.awk"
+CPROGRAM="$TESTDIR1/program2.c"
+
+touch $FILE1
+touch $FILE2
+touch $AWKPROG
+touch $CPROGRAM
 chmod -R 755 $TESTDIR1
 
 echo "";echo "this will run the command in" + $input
 [ "$1" = "$XX" ] || (read YY)
 clear
 cat > $AWKPROG << NNNN
+
 # REV01 Thu Feb 16 15:25:32 WIB 2017
 # START Mon Sep  5 15:18:07 WIB 2016
 BEGIN           { FS=":" 
@@ -96,9 +107,6 @@ Lala lala lala lala la Papua...
 NNNN
 chmod 644 $AWKPROG $CPROGRAM $FILE1 $FILE2
 
-# Cleaning
-rm -rf $TESTDIR1 $TESTDIR2 $TMPFILE2 ${TMPFILE}* .txt
-
 mkdir -p $TESTDIR1 $TESTDIR2
 touch "$TESTDIR1/abcd 'xyz NNNN"
 touch "$TESTDIR1/#wah , berkas * ini ^ aneh & ajaib"
@@ -113,6 +121,3 @@ do
   eval $line
   echo ""
 done < "$input"
-
-# Cleaning
-rm -rf $TESTDIR1 $TESTDIR2 $TMPFILE2 ${TMPFILE}* .txt
