@@ -1,3 +1,20 @@
+CC=gcc
+
+P01=forkpipe
+EXECS= \
+   $(P01)
+EXTRA= \
+   sltest2 \
+
+all:	seealso $(EXECS) 
+
+.phony: clean all seealso
+
+clean: seealso
+	rm -f ${EXECS} ${EXTRA}
+
+seealso:
+	@echo "week07a"
 install:
 	sudo cp autopush.sh /usr/local/bin/autopush
 	sudo chmod +x /usr/local/bin/autopush
