@@ -6,7 +6,6 @@
 #define LOOP1 400
 #define LOOP2 1000000
 #include <stdio.h>
-
 void main() {
    int ii, jj, kk=0;
    for (ii=0;ii<LOOP1;ii++) {
