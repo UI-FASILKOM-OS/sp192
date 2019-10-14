@@ -7,6 +7,7 @@ FILE2="$TESTDIR1/file2.txt"
 DEL="xx"
 TESTFILE="test-file.txt"
 
+clear
 if [ $# != 0 ] && [ $1 == "DELETE" ]
 then
     rm -rf $TESTDIR1
@@ -19,6 +20,7 @@ echo "RESIZE the screen if this following message does not fit in \"80 x 23\""
 echo ""; echo "*** HIT ENTER KEY ***";
 [ "$1" = "$XX" ] || (read YY)
 
+clear
 cat - << NNNN
 01 START START START START START START START START START START START START START
 12345678911234567892123456789312345678941234567895123456789612345678971234567898
@@ -97,6 +99,7 @@ Lala lala lala lala la Papua...
 NNNN
 chmod 644 $AWKPROG $CPROGRAM $FILE1 $FILE2
 
+clear
 echo ""; echo "These are collections of command lines."
 echo "Just run: \"bash $0 11 22 33 44 55\""
 echo ""; echo "*** Hit Enter Key ***";
