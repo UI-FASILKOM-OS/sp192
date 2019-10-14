@@ -1,9 +1,9 @@
 #!/bin/bash
 
-apt-get update
-apt-get dist-upgrade -y
-apt-get autoremove --purge -y
-apt-get autoclean  -y
-apt-get clean  -y
+sudo apt update
+sudo apt dist-upgrade -y
+sudo apt autoremove --purge -y
+sudo apt autoclean  -y
+sudo apt clean  -y
 echo "system update successful"
 exit 0
