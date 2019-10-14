@@ -6,12 +6,14 @@ CC=gcc
 P00=simpleRead
 P01=simpleWriteX
 P02=pipe1
+P03=pipe2
 
 
 EXECS= \
    $(P00) \
    $(P01) \
    $(P02) \
+   $(P03) \
 
 
 all:	$(EXECS)
