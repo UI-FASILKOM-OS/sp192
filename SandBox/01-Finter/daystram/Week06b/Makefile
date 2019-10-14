@@ -1,15 +1,14 @@
-CC=gcc
+TEMP= \
+	   laporan.txt \
+	   sering.txt \
+	   tmp.txt \
+	   tmp2.txt \
+	   tmp3.txt \
+	   total.txt \
+	   unik.txt \
+	   ZB-SOURCE/
 
-P00=simple_read
-P01=simple_writeX
-
-EXECS= \
-	   $(P00)\
-	   $(P01)\
-
-.phony: clean all
-
-all: $(EXECS)
+.phony: clean
 
 clean:
-	rm -f $(EXECS)
+	rm -rf ${TEMP}
