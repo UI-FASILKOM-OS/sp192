@@ -38,11 +38,11 @@ if [[ $1 = "DELETE" ]]; then
 fi
 
 
-# filename='test-file-b.txt'
+filename='test-file.txt'
 
-# while read line; do
-# # reading each line
-# # echo "Line No. $n : $line"
-# eval "${line}"
+while read -r line; do
+# reading each line
+# echo "Line No. $n : $line"
+eval "${line}"
 
-# done < $filename
+done < $filename
