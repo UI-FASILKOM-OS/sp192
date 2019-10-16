@@ -20,7 +20,14 @@ all:    seealso $(EXECS)
 
 clean: seealso
 	rm -f ${EXECS}
-
+	rm -f tmp.txt
+	rm -f text.txt
+	rm -f tmp2.txt
+	rm -f unik.txt
+	rm -f tmp3.txt
+	rm -f sering.txt
+	rm -f laporan.txt
+	
 seealso:
 	@echo "=============================="
 	@echo "See also file Checklist02a.pdf"
