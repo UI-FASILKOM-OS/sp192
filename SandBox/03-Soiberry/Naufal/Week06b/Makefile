@@ -14,7 +14,11 @@ all:	seealso $(EXECS)
 .phony: clean all seealso
 
 clean: seealso
-	rm -f ${EXECS}
+	rm -f tmp.txt
+	rm -f tmp2.txt
+	rm -f tmp3.txt
+	rm -f total.txt
+	rm -f unik.txt
 
 seealso:
 	@echo "=============================="
