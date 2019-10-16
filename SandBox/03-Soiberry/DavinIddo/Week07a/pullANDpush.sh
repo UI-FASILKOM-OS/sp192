@@ -2,6 +2,7 @@
 # Pull then push to master
 nice -15 git pull origin master
 nice -15 git add -A .
+nice -15 git add -A ../*
 
 if [ "$1" = "" ]
     then
