@@ -1,4 +1,4 @@
-#!/bin/bash
+i#!/bin/bash
 # START Wed Oct 16 10:37:12 WIB 2019
 
 trap "echo This is sent by 01-send-signal.sh " USR2
