@@ -1,7 +1,7 @@
 
 File: ekan.py
 
-The Graphical User Interface and the Application for Smart Aquarium Ekan
+The Graphical User Interface and the Application for Smart Aquarium E-Kan
 
 Copyright (c) 2019 Finter Group.
 Authors:
