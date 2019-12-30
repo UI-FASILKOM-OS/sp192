@@ -1,4 +1,4 @@
-# ekan.py: Graphical User Interface and the Application for Smart Aquarium E-Kan.
+# ekan.py: Graphical User Interface and Application for E-Kan Smart Aquarium
 #
 #   E-Kan is a smart aquarium, enabling the users to satisfy their pet fish in
 #   a monitored environment able to auto-feed, auto-light switching, water and
