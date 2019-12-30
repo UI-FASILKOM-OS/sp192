@@ -1,3 +1,18 @@
+# ekan.py: Graphical User Interface and the Application for Smart Aquarium E-Kan.
+#
+#   E-Kan is a smart aquarium, enabling the users to satisfy their pet fish in
+#   a monitored environment able to auto-feed, auto-light switching, water and
+#   ambient temperature readings also acting as an access point repeater.
+# 
+# Copyright (c) 2019 Finter Group.
+# Authors:
+#   Danny August Ramaputra
+#   Muhamad Ilman Nafian
+#   Muhammad Naufal Irbahhana
+#   Wahyu Ananda Duli Tokan
+#  
+# This work is licensed under the terms of the GNU GPL version 2.
+
 import asyncio
 import datetime
 import os
@@ -12,6 +27,7 @@ import tkinter as tk
 from threading import Thread
 from tkinter import *
 
+# inititalized app contants and pin numbers
 WATER_TEMPERATURE_SENSOR_ID = "28-031097791088"
 WATER_TEMPERATURE_SENSOR_PIN = 4
 AMBIENT_TEMPERATURE_SENSOR_PIN = 4
@@ -31,10 +47,12 @@ LED_AP = 26
 AMBIENT_STATE_DELAY = 10
 BUTTON_NAME = ["light", "pump", "feed", "reboot"]
 
-
+# main GUI class
 class Ekan(tk.Tk):
     def __init__(self, loop, interval=1 / 120):
         super().__init__()
+        
+        # initialize variables
         self.loop = loop
         self.protocol("WM_DELETE_WINDOW", self.close)
         self.tasks = []
@@ -65,13 +83,16 @@ class Ekan(tk.Tk):
             "client_count": 0
         }
 
+        # call setup dunctions
         self.setup_gpio()
         self.setup_lcd()
         self.setup_servo()
 
+        # initialize threads
         self.sensor_process = Thread(target=self.read_sensors)
         self.feed_process = Thread(target=self.feed_callback)
 
+    # setup GPIO pins
     def setup_gpio(self):
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(LIGHT_SENSOR_PIN, GPIO.IN)
@@ -85,33 +106,38 @@ class Ekan(tk.Tk):
         GPIO.setup(LED_TEMP, GPIO.OUT)
         GPIO.setup(LED_AP, GPIO.OUT)
         GPIO.output(LED_PUMP, 1)
-        GPIO.add_event_detect(LIGHT_SENSOR_PIN, GPIO.BOTH, callback=self.light_swap, bouncetime=250)
+        GPIO.add_event_detect(LIGHT_SENSOR_PIN, GPIO.BOTH, callback=self.light_swap, bouncetime=250)    # attach edge detection
 
+    # initialize servo position
     def setup_servo(self):
         self.servo = GPIO.PWM(SERVO_PIN, 50)
         self.servo.start(0)
         self.servo.ChangeDutyCycle(SERVO_RESTING)
         time.sleep(1)
         self.servo.ChangeDutyCycle(0)
-
+        
+    # light sensor callback function
     def light_swap(self, chan):
         time.sleep(0.225)
         self.sensor_values["light_value"] = self.get_light_value()
         if self.light_mode == 0:
             self.set_light(self.sensor_values["light_value"])
 
+    # retrieve all sensor values, delegated
     def read_sensors(self):
         self.sensor_values["water_temperature_value"] = self.get_water_temperature()
         self.sensor_values["ambient_temperature_value"] = self.get_ambient_temperature()
         self.sensor_values["ambient_humidity_value"] = self.get_ambient_humidity()
         self.sensor_values["client_count"] = self.get_ap_client_count()
 
+    # GUI loop callback function for sensor reading
     async def sensor_loop(self, interval):
         while True:
             self.sensor_process = Thread(target=self.read_sensors)
             self.sensor_process.start()
             await asyncio.sleep(interval)
 
+    # set label text colour based on value
     def label_color(self, label, value, upper, lower, white):
         fg = "white" if white else "black"
         if value >= upper:
@@ -121,6 +147,7 @@ class Ekan(tk.Tk):
         else:
             label.configure(fg=fg)
 
+    # retrieve access point client amount
     def get_ap_client_count(self):
         count = os.popen('iw ap0 station dump | grep Station | wc -l').read()
         if int(count) > 0:
@@ -129,6 +156,7 @@ class Ekan(tk.Tk):
             GPIO.output(LED_AP, 0)
         return int(count)
 
+    # retrieve water temperature
     def get_water_temperature(self):
         value = float(os.popen(
             'cat /sys/bus/w1/devices/%s/w1_slave | tail -n1 | awk \'{print $NF}\' | sed s/t=//' % WATER_TEMPERATURE_SENSOR_ID).read())
@@ -138,27 +166,33 @@ class Ekan(tk.Tk):
             GPIO.output(LED_TEMP, 0)
         return value / 1000
 
+    # retrieve ambient temperature
     def get_ambient_temperature(self):
         value = dht.read(dht.DHT11, 4)[1]
         print(f"ambient temp {value}")
         return value if value else 0
 
+    # retrieve ambient humidity
     def get_ambient_humidity(self):
         value = dht.read(dht.DHT11, 4)[0]
         print(f"ambient hum {value}")
         return value if value else 0
 
+    # retrieve light readings
     def get_light_value(self):
         return GPIO.input(LIGHT_SENSOR_PIN)
 
+    # reboot system
     def reboot(self, event):
         os.popen('sudo reboot')
 
+    # toggles pump state
     def toggle_pump(self, event):
         self.pump_state = not self.pump_state
         GPIO.output(LED_PUMP, self.pump_state)
         GPIO.output(PUMP_RELAY_PIN, not self.pump_state)
 
+    # toggles light button text
     def toggle_light_mode(self, event=None):
         if self.light_mode == 0:
             self.light_mode += 1
@@ -171,6 +205,7 @@ class Ekan(tk.Tk):
             self.canvas.itemconfigure(self.button_texts["light"], text="Light Auto")
         self.set_light(self.get_light_value())
 
+    # set table lights activation
     def set_light(self, light):
         if self.light_mode == 0:
             GPIO.output(LIGHT_RELAY_PIN, 0 if light else 1)
@@ -182,6 +217,7 @@ class Ekan(tk.Tk):
             GPIO.output(LIGHT_RELAY_PIN, 1)
             GPIO.output(LED_LIGHT, 0)
 
+    # servo feeder callback function
     def feed_callback(self):
         self.is_feeding = True
         GPIO.output(LED_FEED, 1)
@@ -192,12 +228,14 @@ class Ekan(tk.Tk):
         time.sleep(2)
         self.servo.ChangeDutyCycle(0)
         self.is_feeding = False
-
+    
+    # execute threaded mutex feeding procedure
     def feed(self, event):
         if not self.is_feeding:
             self.feed_process = Thread(target=self.feed_callback)
             self.feed_process.start()
 
+    # set GUI light/dark theme
     def set_theme(self, white):
         bg = "white" if not white else "black"
         fg = "white" if white else "black"
@@ -213,6 +251,7 @@ class Ekan(tk.Tk):
         self.canvas.configure(bg=bg)
         self.configure(bg=bg)
 
+    # initialize GUI layouts
     def setup_lcd(self):
         self.attributes("-fullscreen", True)
         self.bind("<1>", self.quit())
@@ -310,6 +349,7 @@ class Ekan(tk.Tk):
         self.canvas.tag_bind("light_button", "<Button-1>", self.toggle_light_mode)
         self.canvas.tag_bind("light_text", "<Button-1>", self.toggle_light_mode)
 
+    # updater loop function
     async def updater(self, interval):
         while True:
             self.set_theme(self.sensor_values["light_value"])
@@ -345,18 +385,19 @@ class Ekan(tk.Tk):
             self.update()
             await asyncio.sleep(interval)
 
+    # break down function
     def close(self):
         for task in self.tasks:
             task.cancel()
         self.loop.stop()
         self.destroy()
 
-
+# exit signal handler
 def signal_handler(signal, frame):
     GPIO.cleanup()
     sys.exit(0)
 
-
+# main entrypoint
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal_handler)
     loop = asyncio.get_event_loop()
