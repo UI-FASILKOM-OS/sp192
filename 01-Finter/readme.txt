@@ -1,7 +1,11 @@
 
 File: ekan.py
 
-The Graphical User Interface and the Application for Smart Aquarium E-Kan
+Graphical User Interface and Application for E-Kan Smart Aquarium
+
+   E-Kan is a smart aquarium, enabling the users to satisfy their pet fish in
+   a monitored environment able to auto-feed, auto-light switching, water and
+   ambient temperature readings also acting as an access point repeater.
 
 Copyright (c) 2019 Finter Group.
 Authors:
