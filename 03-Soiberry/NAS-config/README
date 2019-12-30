@@ -1,0 +1,4 @@
+WARNING!!!
+----------
+The NAS device (pc, laptop, etc) must be logged in as "nas" to the access point,
+otherwise the script will not detect the IP/hostname

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Waits for user confirmation that NAS is connected to the network,
+# then retrieves the IP of the hostname
+read -p "Hello! Please connect NAS to the network, then press enter"
+nasIp="$(who | grep "nas" | awk '{print $5}' | sed 's/(//g; s/)//g')"
+
+while [[ -z "$nasIp" ]]; do
+read -p "NAS host not found! Please try again, then press Enter"
+nasIp="$(who | grep "nas" | awk '{print $5}' | sed 's/(//g; s/)//g')"
+done
+
+# Mounts the target share to the roms directory in RetroPie
+echo "NAS host found! mounting..."
+sudo mount.cifs //$nasIp/roms /home/pi/RetroPie/roms -o user=Naufal
+read -p "Mount successful! Press enter to start Retropie"
+
+# Launches emulation station
+emulationstation
