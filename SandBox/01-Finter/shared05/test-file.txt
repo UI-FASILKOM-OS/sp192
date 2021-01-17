@@ -1,0 +1,9 @@
+ls
+
+ls -al
+
+pwd
+
+ps
+
+ps -ef
